@@ -1,7 +1,9 @@
 package com.oneday.digest.algorithm;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
 public class CalculationService {
     public String[] calculate(String[] input) {
