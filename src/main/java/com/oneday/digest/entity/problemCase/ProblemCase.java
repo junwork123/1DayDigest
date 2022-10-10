@@ -1,4 +1,4 @@
-package com.oneday.digest.entity.problemInput;
+package com.oneday.digest.entity.problemCase;
 
 import com.oneday.digest.entity.problem.Problem;
 import lombok.Builder;
@@ -8,14 +8,14 @@ import javax.persistence.*;
 
 @Entity
 @Getter
-public class ProblemInput {
+public class ProblemCase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
     @ManyToOne(cascade = CascadeType.MERGE, targetEntity = Problem.class)
     @JoinColumn(name = "problem_id", updatable = false)
-    private Problem problem;
+    private Long problemId;
 
     @Column(nullable = false)
     private String[] input;
@@ -24,8 +24,8 @@ public class ProblemInput {
     private String[] output;
 
     @Builder
-    public ProblemInput(Problem problem, String[] input, String[] output) {
-        this.problem = problem;
+    public ProblemCase(Long problemId, String[] input, String[] output) {
+        this.problemId = problemId;
         this.input = input;
         this.output = output;
     }
