@@ -13,4 +13,14 @@ public class CalculationService {
         int answer = -1;
         return answer;
     }
+
+    public int[] solution(int[] fees, String[] records) {
+        int[] answer = {};
+        return answer;
+    }
+
+    public int[] solution(int n, int[] info) {
+        int[] answer = {};
+        return answer;
+    }
 }
