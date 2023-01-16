@@ -1,11 +1,15 @@
 package com.oneday.digest.core.entity;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 public abstract class EntityBase {
+    static {
+        gsonBuilder = new GsonBuilder();
+    }
+    public static GsonBuilder gsonBuilder;
     @Override
     public String toString() {
-        return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
+        return new Gson().toJson(getClass());
     }
 }
