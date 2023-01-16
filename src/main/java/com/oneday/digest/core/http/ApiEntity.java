@@ -1,4 +1,4 @@
-package com.oneday.digest.http;
+package com.oneday.digest.core.http;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;

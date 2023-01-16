@@ -1,4 +1,4 @@
-package com.oneday.digest.domains.core.interfaces;
+package com.oneday.digest.core.entity;
 
 @FunctionalInterface
 public interface Generative<T>{

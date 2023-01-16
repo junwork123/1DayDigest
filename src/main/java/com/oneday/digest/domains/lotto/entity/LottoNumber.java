@@ -1,4 +1,4 @@
-package com.oneday.digest.domains.web.lotto.entities;
+package com.oneday.digest.domains.lotto.entity;
 
 import java.util.Objects;
 

@@ -1,4 +1,4 @@
-package com.oneday.digest.domains.web.lotto;
+package com.oneday.digest.domains.lotto;
 
 import org.springframework.stereotype.Service;
 

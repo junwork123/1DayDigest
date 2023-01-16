@@ -1,6 +1,6 @@
-package com.oneday.digest.domains.web.lotto.entities;
+package com.oneday.digest.domains.lotto.entity;
 
-import com.oneday.digest.domains.core.entity.EntityBase;
+import com.oneday.digest.core.entity.EntityBase;
 import lombok.AllArgsConstructor;
 
 import java.util.List;
