@@ -1,4 +1,4 @@
-package com.oneday.digest.domains.lotto;
+package com.oneday.digest.domains.web.lotto;
 
 import org.springframework.web.bind.annotation.RestController;
 

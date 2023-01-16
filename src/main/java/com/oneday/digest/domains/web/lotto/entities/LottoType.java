@@ -1,6 +1,6 @@
-package com.oneday.digest.domains.core.entity.lotto;
+package com.oneday.digest.domains.web.lotto.entities;
 
-import com.oneday.digest.domains.core.entity.Generative;
+import com.oneday.digest.domains.core.interfaces.Generative;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

@@ -1,4 +1,4 @@
-package com.oneday.digest.domains.core.entity.lotto;
+package com.oneday.digest.domains.web.lotto.entities;
 
 import com.oneday.digest.domains.core.entity.EntityBase;
 import lombok.AllArgsConstructor;
