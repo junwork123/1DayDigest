@@ -1,15 +1,9 @@
 package com.oneday.digest.core.entity;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import lombok.Data;
+import lombok.ToString;
 
+@Data
+@ToString
 public abstract class EntityBase {
-    static {
-        gsonBuilder = new GsonBuilder();
-    }
-    public static GsonBuilder gsonBuilder;
-    @Override
-    public String toString() {
-        return new Gson().toJson(getClass());
-    }
 }
