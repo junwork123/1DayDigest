@@ -1,0 +1,23 @@
+### login success
+POST http://localhost:8080/login
+Content-Type: application/json
+
+{
+  "username": "user",
+  "password": "password"
+}
+
+<> 2023-01-19T221630.200.json
+<> 2023-01-19T221607.200.json
+
+### login fail
+POST http://localhost:8080/login
+Content-Type: application/json
+
+{
+  "username": "1234",
+  "password": "password"
+}
+
+<> 2023-01-19T221630-1.200.json
+<> 2023-01-19T221607-1.200.json
