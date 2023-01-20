@@ -1,0 +1,21 @@
+# Docker compose
+services:
+  database:
+    env_file: ${DB_ENV_FILE}
+    image: ${DB_IMAGE}:${DB_VERSION}
+    container_name: db_instance
+    restart: unless-stopped
+    ports:
+      - ${DB_PORT_IN}:${DB_PORT_OUT}
+    volumes:
+      - db_storage:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+
+
+volumes:
+  db_storage:
+    driver: local
