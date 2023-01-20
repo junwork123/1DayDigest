@@ -1,21 +1,57 @@
 # Docker compose
-services:
-  database:
-    env_file: ${DB_ENV_FILE}
-    image: ${DB_IMAGE}:${DB_VERSION}
-    container_name: db_instance
-    restart: unless-stopped
-    ports:
-      - ${DB_PORT_IN}:${DB_PORT_OUT}
-    volumes:
-      - db_storage:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD", "pg_isready", "-U", "postgres"]
-      interval: 10s
-      timeout: 3s
-      retries: 3
+#x-app-common: &app-common
+#  env_file: ${DB_ENV_FILE}
+#  image: ${APP_IMAGE}:${APP_IMAGE_VERSION}
+#  container_name: app
+#  restart: always
+#  ports:
+#    - ${APP_PORT_IN}:${APP_PORT_OUT}
+#  environment:
+#    NODENAME: ${APP_NAME}
+#    DB_PORT: ${DB_PORT_OUT}
+#    DB_HOST: ${DB_HOST}
+#  networks:
+#    inner_network:
+#      ipv4_address: 172.26.0.3
 
+x-database-common: &database-common
+  env_file: ${DB_ENV_FILE}
+  image: ${DB_IMAGE}:${DB_IMAGE_VERSION}
+  container_name: db_instance
+  restart: unless-stopped
+  ports:
+    - ${DB_PORT_IN}:${DB_PORT_OUT}
+  volumes:
+    - db_storage:${DB_DEFAULT_PATH}
+    - package_storage:${WORKDIR}
+  networks:
+    inner_network:
+      ipv4_address: 172.26.0.2
 
 volumes:
   db_storage:
     driver: local
+  package_storage:
+    driver: local
+
+networks:
+  inner_network:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.26.0.0/16
+
+services:
+  database:
+    <<: *database-common
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "postgres" ]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+
+#  app:
+#    <<: *app-common
+#    depends_on:
+#      database:
+#        condition: service_healthy
