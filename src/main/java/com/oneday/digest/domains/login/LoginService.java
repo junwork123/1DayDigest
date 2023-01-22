@@ -7,11 +7,16 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 public class LoginService {
-    public String login(LoginController.LoginDto login) throws AuthException {
-        log.info(login.getUsername() + " " + login.getPassword());
-        if (!login.getUsername().equals("user") || !login.getPassword().equals("password")) {
+    public String login(ServiceDto login) throws AuthException {
+        log.info(login.username() + " " + login.password());
+        if (!login.username().equals("user") || !login.password().equals("password")) {
             throw new AuthException("Invalid username or password");
         }
         return "Login successful";
+    }
+
+    protected record ServiceDto(String username, String password) {
+    }
+    protected record ResponseDto(String username, String password) {
     }
 }
