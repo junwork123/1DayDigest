@@ -1,5 +1,6 @@
-package com.oneday.digest.core.http;
+package com.oneday.digest.core.http.exception;
 
+import com.oneday.digest.core.http.ApiResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
