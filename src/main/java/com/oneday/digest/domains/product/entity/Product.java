@@ -10,10 +10,10 @@ import javax.persistence.Id;
 @Entity
 public class Product{
     @Id
-    private final long id;
+    private final Long id;
     private final String name;
-    private final int price;
-    private final int quantity;
+    private final Integer price;
+    private final Integer quantity;
 
     @Builder
     public Product(long id, String name, int price, int quantity) {
@@ -24,7 +24,7 @@ public class Product{
     }
 
     public Product() {
-        this.id = -1;
+        this.id = (long) -1;
         this.name = "default";
         this.price = 0;
         this.quantity = 0;
