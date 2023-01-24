@@ -6,11 +6,14 @@ import com.oneday.digest.domains.product.exception.ProductException;
 import com.oneday.digest.domains.product.validation.ProductValidator;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.validator.constraints.Range;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.constraints.NotBlank;
 
 import static com.oneday.digest.core.http.ApiResult.ApiEntity;
 @Slf4j
@@ -41,7 +44,13 @@ public class ProductController {
         }
         return ApiResult.success(productService.addProduct(product.toServiceDto()));
     }
-    public record ProductRequestDto(String name, Integer price, Integer quantity) implements ApiRequestDto<ProductService.ServiceDto>{
+    public record ProductRequestDto(
+            @NotBlank
+            String name,
+            @Range(min = 0, max = 1000000)
+            Integer price,
+            @Range(min = 0, max = 1000)
+            Integer quantity) implements ApiRequestDto<ProductService.ServiceDto>{
         @Override
         public ProductService.ServiceDto toServiceDto() {
             return new ProductService.ServiceDto(name, price, quantity);
