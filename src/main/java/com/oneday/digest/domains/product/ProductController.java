@@ -3,30 +3,24 @@ package com.oneday.digest.domains.product;
 import com.oneday.digest.core.http.ApiResult;
 import com.oneday.digest.core.http.dto.ApiRequestDto;
 import com.oneday.digest.domains.product.exception.ProductException;
-import com.oneday.digest.domains.product.validation.ProductValidator;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 
 import static com.oneday.digest.core.http.ApiResult.ApiEntity;
 @Slf4j
+@Validated
 @AllArgsConstructor
 @RestController
 public class ProductController {
     private final ProductService productService;
-    private final ProductValidator productValidator;
-    @InitBinder
-    public void init(WebDataBinder dataBinder) {
-        log.info("init binder {}", dataBinder);
-        dataBinder.addValidators(productValidator);
-    }
     @GetMapping("/product")
     public ApiEntity<?> getProductList() {
         return ApiResult.success(productService.getProductList());
@@ -37,7 +31,7 @@ public class ProductController {
     }
 
     @PostMapping("/product")
-    public ApiEntity<?> addProduct(@Validated @RequestBody ProductRequestDto product, BindingResult bindingResult) throws ProductException {
+    public ApiEntity<?> addProduct(@Valid @RequestBody ProductRequestDto product, BindingResult bindingResult) throws ProductException {
         if(bindingResult.hasErrors()){
             log.info("errors={}", bindingResult);
             return ApiResult.error(HttpStatus.BAD_REQUEST, String.valueOf(bindingResult));
