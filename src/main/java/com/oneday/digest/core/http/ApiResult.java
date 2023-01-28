@@ -1,9 +1,8 @@
 package com.oneday.digest.core.http;
 
-import com.oneday.digest.core.entity.EntityBase;
 import org.springframework.http.HttpStatus;
 
-public class ApiResult extends EntityBase {
+public class ApiResult {
     public static <T> ApiEntity<T> success(T response) {
         return new ApiEntity<>(true, response, null);
     }
