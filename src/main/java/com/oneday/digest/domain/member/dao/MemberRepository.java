@@ -21,8 +21,8 @@ public class MemberRepository {
         members.put(member.getId(), member);
         return member.getId();
     }
-    public Member findById(Long id) {
-        return members.get(id);
+    public Optional<Member> findById(Long id) {
+        return Optional.of(members.get(id));
     }
 
     public Optional<Member> findByLoginId(String loginId) {
@@ -30,8 +30,8 @@ public class MemberRepository {
                 .filter(member -> member.getLoginId().equals(loginId))
                 .findFirst();
     }
-    public Member deleteById(Long id) {
-        return members.remove(id);
+    public Optional<Member> deleteById(Long id) {
+        return Optional.of(members.remove(id));
     }
 
     public List<Member> findAll() {

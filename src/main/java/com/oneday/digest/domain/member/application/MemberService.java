@@ -1,7 +1,8 @@
 package com.oneday.digest.domain.member.application;
 
-import com.oneday.digest.domain.member.domain.Member;
 import com.oneday.digest.domain.member.dao.MemberRepository;
+import com.oneday.digest.domain.member.domain.Member;
+import com.oneday.digest.domain.member.exception.MemberNotFoundException;
 import com.oneday.digest.domain.model.Address;
 import com.oneday.digest.domain.model.Name;
 import lombok.Builder;
@@ -23,8 +24,9 @@ public class MemberService {
                 .address(member.address())
                 .build());
     }
-    public MemberResponse getMember(Long id) {
-        return MemberResponse.from(memberRepository.findById(id));
+    public MemberResponse getMember(Long id){
+        return MemberResponse.from(memberRepository.findById(id)
+                .orElseThrow(MemberNotFoundException::new));
     }
 
     @Builder

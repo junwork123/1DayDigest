@@ -7,6 +7,7 @@ public enum ErrorCode {
     // Common
     INVALID_INPUT_VALUE(400, "C001", " Invalid Input Value"),
     METHOD_NOT_ALLOWED(405, "C002", " Invalid Input Value"),
+    MEMBER_NOT_FOUND(400, "C003", "Member Not Found"),
 
     HANDLE_ACCESS_DENIED(403, "C006", "Access is Denied"),
 
