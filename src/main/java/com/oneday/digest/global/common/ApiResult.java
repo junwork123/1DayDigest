@@ -1,7 +1,7 @@
 package com.oneday.digest.global.common;
 
-import com.oneday.digest.global.error.ErrorResponse;
-import com.oneday.digest.global.error.exception.ErrorCode;
+import com.oneday.digest.global.error.model.ErrorResponse;
+import com.oneday.digest.global.error.model.ErrorCode;
 import org.springframework.validation.BindingResult;
 
 public class ApiResult {

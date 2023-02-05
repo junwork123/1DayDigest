@@ -1,6 +1,6 @@
-package com.oneday.digest.global.error;
+package com.oneday.digest.global.error.exception;
 
-import com.oneday.digest.global.error.exception.ErrorCode;
+import com.oneday.digest.global.error.model.ErrorCode;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

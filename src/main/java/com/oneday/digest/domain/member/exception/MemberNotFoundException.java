@@ -1,7 +1,7 @@
 package com.oneday.digest.domain.member.exception;
 
-import com.oneday.digest.global.error.BusinessException;
-import com.oneday.digest.global.error.exception.ErrorCode;
+import com.oneday.digest.global.error.exception.BusinessException;
+import com.oneday.digest.global.error.model.ErrorCode;
 
 public class MemberNotFoundException extends BusinessException {
     public MemberNotFoundException() {

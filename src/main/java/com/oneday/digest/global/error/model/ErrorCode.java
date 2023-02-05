@@ -1,4 +1,4 @@
-package com.oneday.digest.global.error.exception;
+package com.oneday.digest.global.error.model;
 
 import lombok.Getter;
 

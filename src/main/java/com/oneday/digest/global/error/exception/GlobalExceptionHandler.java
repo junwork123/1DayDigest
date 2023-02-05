@@ -1,7 +1,8 @@
-package com.oneday.digest.global.error;
+package com.oneday.digest.global.error.exception;
 
 import com.oneday.digest.global.common.ApiResult;
-import com.oneday.digest.global.error.exception.ErrorCode;
+import com.oneday.digest.global.error.model.ErrorCode;
+import com.oneday.digest.global.error.model.ErrorResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindException;
