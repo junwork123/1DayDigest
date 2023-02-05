@@ -1,34 +1,35 @@
 package com.oneday.digest.global.config;
 
-import com.oneday.digest.global.config.filter.LogFilter;
-import com.oneday.digest.global.config.filter.LoginCheckFilter;
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
-import org.springframework.context.annotation.Bean;
+import com.oneday.digest.global.auth.argumentresolver.LoginMemberArgumentResolver;
+import com.oneday.digest.global.config.interceptor.LogInterceptor;
+import com.oneday.digest.global.config.interceptor.LoginInterceptor;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.method.support.HandlerMethodArgumentResolver;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import javax.servlet.Filter;
+import java.util.List;
 
 @Configuration
-public class WebConfig {
-    @Bean
-    public FilterRegistrationBean logFilter() {
-        FilterRegistrationBean<Filter> filterRegistrationBean = new
-                FilterRegistrationBean<>();
-        filterRegistrationBean.setFilter((Filter) new LogFilter());
-        filterRegistrationBean.setOrder(1);
-        filterRegistrationBean.addUrlPatterns("/*");
+public class WebConfig implements WebMvcConfigurer {
+    private static final String[] EXCLUDE_PATHS = { "/css/**", "/js/**", "/img/**", "/lib/**", "/*.ico", "/error" };
+    private static final String[] LOGIN_WHITE_LIST = {"/", "/members/add", "/login", "/logout","/css/*"};
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new LogInterceptor())
+                .order(1)
+                .addPathPatterns("/**")
+                .excludePathPatterns(EXCLUDE_PATHS);
 
-        return filterRegistrationBean;
+        registry.addInterceptor(new LoginInterceptor())
+                .order(2)
+                .addPathPatterns("/**")
+                .excludePathPatterns(LOGIN_WHITE_LIST);
+
     }
 
-    @Bean
-    public FilterRegistrationBean loginCheckFilter() {
-        FilterRegistrationBean<Filter> filterRegistrationBean = new
-                FilterRegistrationBean<>();
-        filterRegistrationBean.setFilter((Filter) new LoginCheckFilter());
-        filterRegistrationBean.setOrder(2);
-        filterRegistrationBean.addUrlPatterns("/*");
-
-        return filterRegistrationBean;
+    @Override
+    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
+        resolvers.add(new LoginMemberArgumentResolver());
     }
 }
